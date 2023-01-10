@@ -1,2 +1,3 @@
-scippnexus
+McStasScript
 pytest
+scippnexus

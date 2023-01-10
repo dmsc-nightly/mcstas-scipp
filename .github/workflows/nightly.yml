@@ -12,7 +12,6 @@ on:
 
 jobs:
   build:
-    name: Run McStas-Scipp test
     runs-on: ubuntu-22.04
     defaults:
       run:
@@ -31,5 +30,5 @@ jobs:
           sudo apt update
           sudo apt install mcstas-suite-python-ng
 
-      - name: Install Scippnexus
+      - name: Install requirements
         run: pip install -r requirements.txt
