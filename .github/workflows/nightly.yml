@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: BSD-3-Clause
+# Copyright (c) 2022 Scipp contributors (https://github.com/scipp)
+
+name: nightly
+
+on:
+  push:
+    branches:
+      - main
+      - release
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        shell: bash -l {0}  # required for conda env
+    steps:
+
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9' 
+
+      - name: Install McStas
+        run: |
+          wget https://packages.mccode.org/debian/mccode.list
+          sudo cp mccode.list /etc/apt/sources.list.d/.
+          sudo apt update
+          sudo apt install mcstas-suite-python-ng
+
+      - name: Install requirements
+        run: pip install -r requirements.txt
